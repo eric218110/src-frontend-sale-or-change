@@ -1,10 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Routes } from "./main/routes";
-import "./global/style.scss";
+import { MainApp } from '@main/app'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Routes />
+    <MainApp />
   </React.StrictMode>
-);
+)
