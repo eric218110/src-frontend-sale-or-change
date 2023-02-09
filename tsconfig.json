@@ -19,6 +19,7 @@
     "baseUrl": "./",
     "paths": {
       "@presentation/*": ["./src/presentation/*"],
+      "@domain/*": ["./src/domain/*"],
       "@main/*": ["./src/main/*"]
     }
   },
