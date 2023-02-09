@@ -12,20 +12,6 @@ export const Container = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     color: ${({ theme }) => theme.colors.text200};
-
-    .title {
-      margin-bottom: 2rem;
-    }
-
-    h4 {
-      font-size: 2rem;
-      font-weight: 800;
-    }
-
-    h6 {
-      font-size: 1.4rem;
-      font-weight: 400;
-    }
   }
 `
 

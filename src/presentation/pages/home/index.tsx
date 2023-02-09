@@ -2,6 +2,7 @@ import {
   CardProductComponent,
   CardProductComponentProps
 } from '@presentation/components/card/product'
+import { TitleHeaderComponent } from '@presentation/components/titleHeader'
 import * as S from './style'
 
 export const HomePage = () => {
@@ -15,10 +16,10 @@ export const HomePage = () => {
   return (
     <S.Container>
       <div className="item">
-        <div className="title">
-          <h4>Ofertas</h4>
-          <h6>Veja nossas principais ofertas</h6>
-        </div>
+        <TitleHeaderComponent
+          title="Ofertas"
+          subTitle="Veja nossas principais ofertas"
+        />
         <div className="content">
           <CardProductComponent {...propsCard} />
           <CardProductComponent {...propsCard} />
