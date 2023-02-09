@@ -1,17 +1,7 @@
+import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2.5fr;
-  padding: 5rem 10%;
-
-  .content {
-    display: grid;
-    grid-gap: 2rem;
-    grid-template: repeat(4, 1fr) / repeat(2, 1fr);
-    grid-auto-flow: row dense;
-  }
-
   .item {
     display: flex;
     flex-direction: column;
@@ -34,19 +24,12 @@ export const Container = styled.div`
   }
 `
 
-export const AsideContainer = styled.aside`
-  display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  flex-direction: column;
-  gap: 1rem;
-`
-
-export const Item = styled.div<{ isActive?: boolean }>`
+export const Item = styled(Link)<{ isActive?: boolean }>`
   cursor: pointer;
   border-radius: 2rem;
   width: 25rem;
   padding: 0.8rem 2rem;
+  text-decoration: none;
 
   ${({ isActive }) =>
     isActive &&

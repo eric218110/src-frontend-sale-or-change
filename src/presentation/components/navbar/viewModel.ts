@@ -1,10 +1,11 @@
+import { paths } from '@presentation/routes/path'
 import { useState } from 'react'
 import { FaListUl } from 'react-icons/fa'
 import { HiOutlineMailOpen } from 'react-icons/hi'
 import { MdLibraryAdd } from 'react-icons/md'
 import * as T from './types'
 
-export const useHomeViewModel = () => {
+export const useNavBarViewModel = () => {
   const [activeItem, setActiveItem] = useState<T.ItemType>(undefined)
 
   const itemIsActive = (item: T.ItemType) => item === activeItem
@@ -21,17 +22,20 @@ export const useHomeViewModel = () => {
         {
           key: 'negotiation',
           label: 'Negociação',
-          Icon: MdLibraryAdd
+          Icon: MdLibraryAdd,
+          to: paths.negotiations
         },
         {
           key: 'myNegotiation',
           label: 'Minhas negociações',
-          Icon: FaListUl
+          Icon: FaListUl,
+          to: paths.home
         },
         {
           key: 'invites',
           label: 'Meus convites',
-          Icon: HiOutlineMailOpen
+          Icon: HiOutlineMailOpen,
+          to: paths.home
         }
       ]
     }
