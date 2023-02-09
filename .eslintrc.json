@@ -25,6 +25,7 @@
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "@typescript-eslint/no-inferrable-types": "error",
-    "@typescript-eslint/no-unused-vars": "error"
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-namespace": "off"
   }
 }
