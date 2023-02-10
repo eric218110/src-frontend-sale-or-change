@@ -9,6 +9,11 @@ export const Container = styled.div`
       border-radius: 0.5rem;
       font-weight: 700;
       cursor: pointer;
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.08), 0 0 3px rgba(0, 0, 0, 0.05);
+      :hover {
+        box-shadow: 5px 16px 16px rgba(0, 0, 0, 0.08),
+          0 0 5px rgba(0, 0, 0, 0.05);
+      }
     }
     button[type='button'],
     button[type='submit'] {
@@ -28,6 +33,21 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+
+  .preview {
+    flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    div {
+      flex-basis: calc(18% - 1rem);
+      display: flex;
+      flex-direction: column;
+    }
+    img {
+      max-width: 20rem;
+      max-height: 20rem;
+    }
+  }
 
   .row {
     display: flex;

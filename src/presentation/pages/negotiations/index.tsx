@@ -1,11 +1,19 @@
 import { TitleHeaderComponent } from '@presentation/components/titleHeader'
 import { useEffect } from 'react'
 import * as S from './style'
+import { NegotiationsPageProps } from './types'
 import { useViewModdelNegotiationsPage } from './viewModel'
 
-export const NegotiationsPage = () => {
-  const { handlerOnSubmitForm, register, loadNavigation, step } =
-    useViewModdelNegotiationsPage()
+export const NegotiationsPage = (props: NegotiationsPageProps) => {
+  const {
+    handlerOnSubmitForm,
+    register,
+    loadNavigation,
+    step,
+    onFindAddressByZipCode,
+    onChangeImageInput,
+    imagesPreview
+  } = useViewModdelNegotiationsPage(props)
 
   useEffect(() => {
     loadNavigation()
@@ -22,7 +30,7 @@ export const NegotiationsPage = () => {
           <>
             <S.InputGroup>
               <label htmlFor="Tipo">Tipo</label>
-              <select {...register('type', { required: true })} name="type">
+              <select {...register('type', { required: true })}>
                 <option value="" disabled defaultChecked>
                   Selecione um tipo
                 </option>
@@ -36,33 +44,26 @@ export const NegotiationsPage = () => {
               <input
                 {...register('description', { required: true })}
                 type="text"
-                name="description"
               />
             </S.InputGroup>
             <S.InputGroup>
               <label htmlFor="Value">Valor</label>
-              <input
-                {...register('value', { required: true })}
-                type="text"
-                name="value"
-              />
+              <input {...register('value', { required: true })} type="number" />
             </S.InputGroup>
             <S.InputGroup>
               <label htmlFor="Negociar por">Negociar por</label>
               <input
                 {...register('trade_for', { required: true })}
-                type="text"
-                name="trade_for"
+                type="value"
               />
             </S.InputGroup>
           </>
         )}
-
         {step.currentStep === 'two' && (
           <>
             <S.InputGroup>
               <label htmlFor="Tipo">Urgência</label>
-              <select {...register('type', { required: true })} name="type">
+              <select {...register('type', { required: true })}>
                 <option value="" disabled defaultChecked>
                   Selecione a Urgência
                 </option>
@@ -71,15 +72,14 @@ export const NegotiationsPage = () => {
                 <option value="alta">Alta</option>
               </select>
             </S.InputGroup>
-
             <S.InputGroup>
               <div className="row">
                 <div className="item">
                   <label htmlFor="Cep">Cep</label>
                   <input
                     {...register('zip_code', { required: true })}
+                    onBlur={onFindAddressByZipCode}
                     type="text"
-                    name="zip_code"
                   />
                 </div>
                 <div className="item">
@@ -87,7 +87,6 @@ export const NegotiationsPage = () => {
                   <input
                     {...register('address', { required: true })}
                     type="text"
-                    name="address"
                   />
                 </div>
                 <div className="item">
@@ -95,7 +94,6 @@ export const NegotiationsPage = () => {
                   <input
                     {...register('city', { required: true })}
                     type="text"
-                    name="city"
                   />
                 </div>
                 <div className="item">
@@ -103,13 +101,38 @@ export const NegotiationsPage = () => {
                   <input
                     {...register('state', { required: true })}
                     type="text"
-                    name="state"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="Data limite">Data limite</label>
+                  <input
+                    {...register('limit_date', { required: true })}
+                    type="date"
                   />
                 </div>
               </div>
             </S.InputGroup>
+            <S.InputGroup>
+              <label htmlFor="Imagens">Imagens</label>
+              <input
+                type="file"
+                onChange={onChangeImageInput}
+                accept="image/*"
+              />
+            </S.InputGroup>
+            <S.InputGroup>
+              <div className="preview">
+                {imagesPreview.map(({ uri, name }, key) => (
+                  <div key={key}>
+                    <label htmlFor={name}>{name}</label>
+                    <img src={uri as unknown as string} />
+                  </div>
+                ))}
+              </div>
+            </S.InputGroup>
           </>
         )}
+
         {step.currentStep === 'one' && (
           <>
             <button type="reset" className="outline">
@@ -132,18 +155,3 @@ export const NegotiationsPage = () => {
     </S.Container>
   )
 }
-
-// “location” : {
-// “lat” : DOUBLE,
-// “lng” : DOUBLE,
-// “zip_code” : INT
-// “address” : STRING,
-// “city” : STRING,
-// “state”: STRING ,
-// }, “urgency” : {
-// “type” : ENUM (1 – Baixa, 2 – Média, 3 – Alta, 4 – Data),
-// “limit_date” : DATE
-// }, “photos“ : [
-// { “src” : STRING },
-// { “src” : STRING }
-// ]

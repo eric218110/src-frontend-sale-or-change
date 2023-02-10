@@ -1,35 +1,14 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import * as T from './types'
 
-type FormData = {
-  type: string
-  value: string
-  description: string
-  trade_for: string
-  address: string
-  city: string
-  state: string
-  zip_code: string
-  urgency: string
-  limit_date: string
-  photos: string
-}
-
-// “address” : STRING,
-// “city” : STRING,
-// “state”: STRING ,
-// “zip_code” : INT
-// }, “urgency” : {
-// “type” : ENUM (1 – Baixa, 2 – Média, 3 – Alta, 4 – Data),
-// “limit_date” : DATE
-// }, “photos“ : [
-// { “src” : STRING },
-// { “src” : STRING }
-// ]
-
-export const useViewModdelNegotiationsPage = () => {
-  const { register, handleSubmit } = useForm<FormData>()
+export const useViewModdelNegotiationsPage = (
+  props: T.NegotiationsPageProps
+) => {
+  const { register, handleSubmit, getValues, setValue } =
+    useForm<T.FormDataCreateNegotiations>()
   const [step, setStep] = useState<'one' | 'two'>('one')
+  const [imagesPreview, setImagesPreview] = useState<T.PreviewImageType[]>([])
 
   const goToNextStep = () => {
     if (step == 'one') {
@@ -43,7 +22,7 @@ export const useViewModdelNegotiationsPage = () => {
     }
   }
 
-  const handlerOnSubmitSearch = (data: FormData) => {
+  const handlerOnSubmitSearch = (data: T.FormDataCreateNegotiations) => {
     console.log(data)
   }
 
@@ -61,12 +40,59 @@ export const useViewModdelNegotiationsPage = () => {
     )
   }
 
+  const onChangeImageInput = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files?.item(0)) {
+      const file = event.target.files?.item(0)
+      const reader = new FileReader()
+      reader.addEventListener('load', () => {
+        setImagesPreview([
+          ...imagesPreview,
+          ...[
+            {
+              name: String(file?.name),
+              uri: reader.result,
+              file
+            }
+          ]
+        ])
+        event.target.value = ''
+      })
+      if (file) {
+        reader.readAsDataURL(file)
+      }
+    }
+  }
+
+  const onFindAddressByZipCode = async () => {
+    const zipCode = Number(getValues('zip_code'))
+    const { data, error } = await props.zipCodeService.onLoadZipById(zipCode)
+
+    if (data) {
+      setValue('address', String(data?.logradouro))
+      setValue('city', String(data?.localidade))
+      setValue('state', String(data?.uf))
+    }
+    if (error) {
+      setValue('address', '')
+      setValue('city', '')
+      setValue('state', '')
+    }
+  }
+
+  const isOne = step === 'one'
+  const isTwo = step === 'two'
+
   return {
     step: {
       currentStep: step,
       goToBackStep,
-      goToNextStep
+      goToNextStep,
+      isOne,
+      isTwo
     },
+    imagesPreview,
+    onChangeImageInput,
+    onFindAddressByZipCode,
     handlerOnSubmitForm: handleSubmit(handlerOnSubmitSearch),
     loadNavigation,
     register
