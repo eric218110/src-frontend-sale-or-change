@@ -1,3 +1,4 @@
+import { negotiationsConnector } from '@presentation/core/connectors/negotiations/add'
 import { zipCodeConnector } from '@presentation/core/connectors/zipCode'
 import { HomePage } from '@presentation/pages/home'
 import { NegotiationsPage } from '@presentation/pages/negotiations'
@@ -18,7 +19,12 @@ export const Routes = () => {
         },
         {
           path: paths.negotiations,
-          element: <NegotiationsPage zipCodeService={zipCodeConnector} />
+          element: (
+            <NegotiationsPage
+              zipCodeService={zipCodeConnector}
+              negotiationsService={negotiationsConnector}
+            />
+          )
         }
       ]
     }

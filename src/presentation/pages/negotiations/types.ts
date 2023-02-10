@@ -1,7 +1,9 @@
+import { NegotiationConnectorType } from '@presentation/core/types/negotiations'
 import { ZipCodeConnectorType } from '@presentation/core/types/zipcode'
 
 export type NegotiationsPageProps = {
   zipCodeService: ZipCodeConnectorType
+  negotiationsService: NegotiationConnectorType
 }
 
 export type PreviewImageType = {
