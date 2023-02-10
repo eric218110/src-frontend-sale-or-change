@@ -12,7 +12,7 @@ export class AddNegotiationsService implements AddNegotiation {
     body: AddNegotiation.Props
   ): Promise<AddNegotiation.Response> {
     try {
-      const url = this.facadeUrl.normalizeUrlByParams(`/deal`)
+      const url = this.facadeUrl.normalizeUrlByParams('deal')
 
       const { data } = await this.methodHttpPostAdapter.post<
         AddNegotiation.Response,

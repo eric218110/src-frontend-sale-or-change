@@ -63,7 +63,7 @@ export const NegotiationsPage = (props: NegotiationsPageProps) => {
           <>
             <S.InputGroup>
               <label htmlFor="Tipo">Urgência</label>
-              <select {...register('type', { required: true })}>
+              <select {...register('urgency', { required: true })}>
                 <option value="" disabled defaultChecked>
                   Selecione a Urgência
                 </option>

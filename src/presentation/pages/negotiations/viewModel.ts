@@ -8,6 +8,10 @@ export const useViewModdelNegotiationsPage = (
   const { register, handleSubmit, getValues, setValue } =
     useForm<T.FormDataCreateNegotiations>()
   const [step, setStep] = useState<'one' | 'two'>('one')
+  const [coords, setCoords] = useState<{ lat: number; lng: number }>({
+    lat: 0,
+    lng: 0
+  })
   const [imagesPreview, setImagesPreview] = useState<T.PreviewImageType[]>([])
 
   const goToNextStep = () => {
@@ -22,14 +26,43 @@ export const useViewModdelNegotiationsPage = (
     }
   }
 
-  const handlerOnSubmitSearch = (data: T.FormDataCreateNegotiations) => {
-    console.log(data)
+  const handlerOnSubmitSearch = async (form: T.FormDataCreateNegotiations) => {
+    const {
+      address,
+      city,
+      state,
+      zip_code,
+      description,
+      limit_date,
+      trade_for,
+      type,
+      urgency,
+      value
+    } = form
+
+    const location = { address, city, state, zip_code, ...coords }
+
+    const { data, error } = await props.negotiationsService.onAddNegotiation({
+      location,
+      urgency: {
+        limit_date,
+        type: urgency
+      },
+      description: description,
+      trade_for: trade_for,
+      value: value,
+      type: type,
+      photos: imagesPreview.map(({ name }) => ({ src: name }))
+    })
+
+    console.log(data, 'data')
+    console.log(error, 'error')
   }
 
   const loadNavigation = () => {
     navigator.geolocation.getCurrentPosition(
-      position => {
-        console.log(position)
+      ({ coords }) => {
+        setCoords({ lat: coords.latitude, lng: coords.longitude })
       },
       err => {
         console.log(err)

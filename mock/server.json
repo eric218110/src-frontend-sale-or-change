@@ -23,7 +23,6 @@
       "value": 36,
       "description": "Mouse Sem Fio Bluetooth Preto",
       "trade_for": "10",
-
       "location": {
         "lat": -7.050486,
         "lng": -37.277906,
@@ -32,17 +31,78 @@
         "state": "PB",
         "zip_code": "58704260"
       },
-
       "urgency": {
         "type": "Média",
         "limit_date": "Thu Feb 09 2023 17:49:26 GMT-0300"
       },
       "photos": [
-        { "src": "https://img.olx.com.br/images/77/775334848845017.jpg" },
-        { "src": "https://img.olx.com.br/images/77/772340360909753.jpg" },
-        { "src": "https://img.olx.com.br/images/77/770351128469173.jpg" },
-        { "src": "https://img.olx.com.br/images/82/826306480628090.jpg" }
+        {
+          "src": "https://img.olx.com.br/images/77/775334848845017.jpg"
+        },
+        {
+          "src": "https://img.olx.com.br/images/77/772340360909753.jpg"
+        },
+        {
+          "src": "https://img.olx.com.br/images/77/770351128469173.jpg"
+        },
+        {
+          "src": "https://img.olx.com.br/images/82/826306480628090.jpg"
+        }
       ]
+    },
+    {
+      "location": {
+        "address": "Rua Francisco Alves Queiroz",
+        "city": "Patos",
+        "state": "PB",
+        "zip_code": "58704260",
+        "lat": -7.050705,
+        "lng": -37.277885
+      },
+      "urgency": {
+        "limit_date": "2023-02-19",
+        "type": "media"
+      },
+      "description": "breve descricao",
+      "trade_for": "10",
+      "value": "120",
+      "type": "troca",
+      "photos": [
+        {
+          "src": "adaptive-icon.png"
+        },
+        {
+          "src": "map.svg"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "location": {
+        "address": "Rua Francisco Alves Queiroz",
+        "city": "Patos",
+        "state": "PB",
+        "zip_code": "58704260",
+        "lat": -7.050705,
+        "lng": -37.277885
+      },
+      "urgency": {
+        "limit_date": "2023-02-19",
+        "type": "media"
+      },
+      "description": "breve descricao",
+      "trade_for": "10",
+      "value": "120",
+      "type": "troca",
+      "photos": [
+        {
+          "src": "adaptive-icon.png"
+        },
+        {
+          "src": "map.svg"
+        }
+      ],
+      "id": 3
     }
   ]
 }
