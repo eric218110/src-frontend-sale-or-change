@@ -1,0 +1,48 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Jon Doe",
+      "email": "jonDoe@mail.com",
+      "login": "jonDoe@mail.com",
+      "password": "123",
+      "location": {
+        "lat": -7.050486,
+        "lng": -37.277906,
+        "address": "Rua Francisco Alves Queiroz",
+        "city": "Patos",
+        "state": "PB",
+        "zip_code": "58704260"
+      }
+    }
+  ],
+  "deal": [
+    {
+      "id": 1,
+      "type": "Venda",
+      "value": 36,
+      "description": "Mouse Sem Fio Bluetooth Preto",
+      "trade_for": "10",
+
+      "location": {
+        "lat": -7.050486,
+        "lng": -37.277906,
+        "address": "Rua Francisco Alves Queiroz",
+        "city": "Patos",
+        "state": "PB",
+        "zip_code": "58704260"
+      },
+
+      "urgency": {
+        "type": "Média",
+        "limit_date": "Thu Feb 09 2023 17:49:26 GMT-0300"
+      },
+      "photos": [
+        { "src": "https://img.olx.com.br/images/77/775334848845017.jpg" },
+        { "src": "https://img.olx.com.br/images/77/772340360909753.jpg" },
+        { "src": "https://img.olx.com.br/images/77/770351128469173.jpg" },
+        { "src": "https://img.olx.com.br/images/82/826306480628090.jpg" }
+      ]
+    }
+  ]
+}
