@@ -1,11 +1,10 @@
 import { ErrorModel } from '@domain/models/error.model'
-import {
-  AddNegotiationForm,
-  NegotiationModel
-} from '@domain/models/negotiations'
+import { NegotiationModel } from '@domain/models/negotiations'
 
 export type AddNegotiation = {
-  onAddNegotiation: (zipCode: number) => Promise<AddNegotiation.Response>
+  onAddNegotiation: (
+    props: AddNegotiation.Props
+  ) => Promise<AddNegotiation.Response>
 }
 
 export namespace AddNegotiation {
@@ -13,5 +12,5 @@ export namespace AddNegotiation {
     data?: NegotiationModel
     error?: ErrorModel
   }
-  export type Props = AddNegotiationForm
+  export type Props = NegotiationModel
 }

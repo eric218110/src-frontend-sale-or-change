@@ -5,21 +5,26 @@ export class UrlFacade implements FacadeUrl {
   constructor(private readonly facadeEnviroments: FacadeEnviroments) {}
 
   public loadDefaultUrl(): string {
-    return this.facadeEnviroments.loadEnviromentByKey('baseUrl')
+    return this.facadeEnviroments.loadEnviromentByKey('VITE_URL_API')
   }
 
   public normalizeUrlByParams(
     endPoint: string,
-    params: Record<string, string | number>,
+    params?: Record<string, string | number>,
     dontUseDefaultUrl?: boolean
   ) {
     const endPoints = endPoint.replace(/\${/g, '').replace(/\}/g, '').split('/')
-    const endPointNormalize = endPoints.map(url => params[url] || url).join('/')
 
-    if (dontUseDefaultUrl) {
-      return endPointNormalize
+    let sufixEndPoint = endPoint
+
+    if (params) {
+      sufixEndPoint = endPoints.map(url => params[url] || url).join('/')
+
+      if (dontUseDefaultUrl) {
+        return sufixEndPoint
+      }
     }
 
-    return `${this.loadDefaultUrl()}/${endPointNormalize}`
+    return `${this.loadDefaultUrl()}/${sufixEndPoint}`
   }
 }
